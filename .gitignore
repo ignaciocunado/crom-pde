@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+.idea/
+
 __pycache__/
 *.py[cod]
 *$py.class
@@ -169,3 +171,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+*.mp4
+.DS_STORE
