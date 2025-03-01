@@ -1,4 +1,6 @@
 import numpy as np
+import os
+import h5py
 
 class HeatEquationDataGenerator:
     """
@@ -61,15 +63,52 @@ class HeatEquationDataGenerator:
 
         return np.array(data_sequence)
 
-    def generate_data(self, n):
+    def generate_data(self, n, save=False):
         """
         Generates data according to the heat equation
-        :param n: number of samples
+        :param n: number of different PDE temporal sequences
+        :param save: whether to save the data in h5 format
         :return: data
         """
+        parent_dir = './output'
+        os.makedirs(parent_dir, exist_ok=True)
         training_data = []
-        for _ in range(n):  # Generate data for 8 different diffusion profiles
+
+        for sim_idx in range(n):
+            sim_dir = os.path.join(parent_dir, str(sim_idx), f"sim_seq_{sim_idx:03d}")
+            os.makedirs(sim_dir, exist_ok=True)
+
             nu_x_train = self.__generate_diffusion_coefficients()
             data_sequence_train = self.__solve_heat_equation(nu_x_train)
             training_data.append((np.unique(nu_x_train), data_sequence_train))
+
+            if save:
+                for time_step, state in enumerate(data_sequence_train):
+                    file_name = os.path.join(sim_dir, f"h5_f_{time_step:010d}.h5")
+                    with h5py.File(file_name, 'w') as h5f:
+                        h5f.create_dataset('/x', data=[self.grid])
+                        h5f.create_dataset('/q', data=[state])
+                        h5f.create_dataset('/time', data=np.array([[time_step * self.dt]], dtype=np.float32))
+
+                mean_x = np.mean(self.grid)
+                std_x = np.std(self.grid)
+
+                mean_q = np.mean(data_sequence_train.flatten())
+                std_q = np.std(data_sequence_train.flatten())
+
+                min_x = np.min(self.grid)
+                max_x = np.max(self.grid)
+
+                with open(f'output/{sim_idx}/meanandstd_x.npy', 'wb') as f:
+                    np.save(f, mean_x)
+                    np.save(f, std_x)
+
+                with open(f'output/{sim_idx}/meanandstd_q.npy', 'wb') as f:
+                    np.save(f, mean_q)
+                    np.save(f, std_q)
+
+                with open(f'output/{sim_idx}/minandmax_x.npy', 'wb') as f:
+                    np.save(f, min_x)
+                    np.save(f, max_x)
+
         return training_data

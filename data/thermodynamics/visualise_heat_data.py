@@ -1,12 +1,11 @@
-import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from heat_equation import HeatEquationDataGenerator
 from initial_temperatures import *
 
 def visualise_initial_and_final_results():
-    generator = HeatEquationDataGenerator(dom_length=1.0, time=0.1, spatial_points=101, nt=50000,
-                                          initial_temp=initial_temp_sinusoidal, nu_min=0.0, nu_max=0.2)
+    generator = HeatEquationDataGenerator(dom_length=1.0, time=0.1, spatial_points=101, nt=2000,
+                                          initial_temp=initial_temp_sinusoidal, nu_min=0.0, nu_max=0.4)
     data = generator.generate_data(4)
 
     x = np.linspace(0, 1, 101)
@@ -78,4 +77,4 @@ def visualize_process_animation():
 
 
 if __name__ == '__main__':
-    visualize_process_animation()
+    visualise_initial_and_final_results()
