@@ -39,6 +39,7 @@ def visualise_initial_and_final_results():
         i += 2
 
     plt.show()
+    fig.savefig("visuals/initial_and_final.png")
 
 
 def visualize_process_animation():
@@ -72,9 +73,9 @@ def visualize_process_animation():
 
     ani = FuncAnimation(fig, update, frames=frames, interval=1, blit=True)
 
-    ani.save('animation.mp4')
+    ani.save('visuals/animation.mp4')
     plt.show()
 
 
 if __name__ == '__main__':
-    visualise_initial_and_final_results()
+    visualize_process_animation()

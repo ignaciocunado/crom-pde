@@ -173,6 +173,5 @@ cython_debug/
 .pypirc
 
 
-*.mp4
 .DS_STORE
 output/
