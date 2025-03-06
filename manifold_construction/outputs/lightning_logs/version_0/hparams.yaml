@@ -1,0 +1,158 @@
+batch_size: 16
+data_format:
+  data_path: data/thermodynamics/output/0
+  i_dim: 1
+  npoints: 101
+  o_dim: 1
+epo:
+- 3000
+- 3000
+- 3000
+- 3000
+- 3000
+- 1000
+example_input_array: !!python/object/apply:torch._utils._rebuild_tensor_v2
+- !!python/object/apply:torch.storage._load_from_bytes
+  - !!binary |
+    gAKKCmz8nEb5IGqoUBkugAJN6QMugAJ9cQAoWBAAAABwcm90b2NvbF92ZXJzaW9ucQFN6QNYDQAA
+    AGxpdHRsZV9lbmRpYW5xAohYCgAAAHR5cGVfc2l6ZXNxA31xBChYBQAAAHNob3J0cQVLAlgDAAAA
+    aW50cQZLBFgEAAAAbG9uZ3EHSwR1dS6AAihYBwAAAHN0b3JhZ2VxAGN0b3JjaApGbG9hdFN0b3Jh
+    Z2UKcQFYDwAAADEwNTU1MzEzMDg3Mjk5MnECWAMAAABjcHVxA0vKTnRxBFEugAJdcQBYDwAAADEw
+    NTU1MzEzMDg3Mjk5MnEBYS7KAAAAAAAAAAAAAAAAAAAACOGAPgrXIzx5JPU+CtejPHC0KD+PwvU8
+    DlNGPwrXIz3Yh1A/zcxMPQ5TRj+PwnU9cLQoPylcjz15JPU+CtejPQjhgD7sUbg9LDIAJc3MzD0I
+    4YC+rkfhPXkk9b6PwvU9cLQov7geBT4OU0a/KVwPPtiHUL+amRk+DlNGvwrXIz5wtCi/exQuPnkk
+    9b7sUTg+COGAvlyPQj6p6AsyzcxMPgrhgD49Clc+hST1Pq5HYT6VtCg/H4VrPt5TRj+PwnU+/ItQ
+    PwAAgD46ZkY/uB6FPooEKT9xPYo++Xr3Pilcjz7im4g+4XqUPtbeMj2amZk+3wISvlK4nj6OAny+
+    CtejPgSGdb7D9ag+TppqvnsUrj5G/Fu+MzOzPq12Sr7sUbg+p9w2vqRwvT5nAyK+XI/CPi67DL4U
+    rsc+14/vvc3MzD7Hs8e9hevRPo4No709Ctc+oYeCvfYo3D5bhU29rkfhPhkhIL1mZuY+ls75vB+F
+    6z4ijMa816PwPrNMpLyPwvU+dguQvEjh+j7fLYa8AAAAP0PNgrxcjwI/kwOCvLgeBT9GNYC8FK4H
+    P2yldLxxPQo/0xdcvM3MDD+75TO8KVwPPzYo9ruF6xE/KPVJu+F6FD+zgg07PQoXP+m1AjyamRk/
+    IspmPPYoHD+YOaU8UrgeP7JG1DyuRyE/bDX+PArXIz8QjBA9ZmYmP/7FHT3D9Sg/yWUmPR+FKz83
+    Jiw9exQuPw0YLz3XozA/oGQvPTMzMz89SS09j8I1P94RKT3sUTg/qxMjPUjhOj+Ypxs9pHA9P4Al
+    Ez0AAEA/DeAJPVyPQj+OIQA9uB5FP8xT7DwUrkc/IVvYPHE9Sj9Gq8Q8zcxMP1uBsTwpXE8/eQif
+    PIXrUT+MXY084XpUP+4meTw9Clc/D25ZPJqZWT+vpDs89ihcP5DeHzxSuF4/zDEGPK5HYT/Abt07
+    CtdjPzETsztmZmY/ioGNO8P1aD8cu1k7H4VrP4toIjt7FG4/SsrpOtejcD8tdqE6MzNzP3ptVDqP
+    wnU/520DOuxReD8H2JM5SOF6P/UPAzmkcH0/AAAAAAAAgD8=
+- 0
+- !!python/tuple
+  - 1
+  - 101
+  - 2
+- !!python/tuple
+  - 202
+  - 2
+  - 1
+- false
+- !!python/object/apply:collections.OrderedDict
+  - []
+initial_lr: 0.0001
+kernel_size: 6
+label_length: 3
+learning_rate_scaling:
+- 10
+- 5
+- 2
+- 1
+- 0.5
+- 0.2
+loaded_from: null
+preprop_params:
+  max_x: !!python/object/apply:numpy._core.multiarray._reconstruct
+    args:
+    - &id001 !!python/name:numpy.ndarray ''
+    - !!python/tuple
+      - 0
+    - !!binary |
+      Yg==
+    state: !!python/tuple
+    - 1
+    - !!python/tuple []
+    - &id002 !!python/object/apply:numpy.dtype
+      args:
+      - f8
+      - false
+      - true
+      state: !!python/tuple
+      - 3
+      - <
+      - null
+      - null
+      - null
+      - -1
+      - -1
+      - 0
+    - false
+    - !!binary |
+      AAAAAAAA8D8=
+  mean_q: !!python/object/apply:numpy._core.multiarray._reconstruct
+    args:
+    - *id001
+    - !!python/tuple
+      - 0
+    - !!binary |
+      Yg==
+    state: !!python/tuple
+    - 1
+    - !!python/tuple []
+    - *id002
+    - false
+    - !!binary |
+      clPQV1B9oT8=
+  mean_x: !!python/object/apply:numpy._core.multiarray._reconstruct
+    args:
+    - *id001
+    - !!python/tuple
+      - 0
+    - !!binary |
+      Yg==
+    state: !!python/tuple
+    - 1
+    - !!python/tuple []
+    - *id002
+    - false
+    - !!binary |
+      ////////3z8=
+  min_x: !!python/object/apply:numpy._core.multiarray._reconstruct
+    args:
+    - *id001
+    - !!python/tuple
+      - 0
+    - !!binary |
+      Yg==
+    state: !!python/tuple
+    - 1
+    - !!python/tuple []
+    - *id002
+    - false
+    - !!binary |
+      AAAAAAAAAAA=
+  std_q: !!python/object/apply:numpy._core.multiarray._reconstruct
+    args:
+    - *id001
+    - !!python/tuple
+      - 0
+    - !!binary |
+      Yg==
+    state: !!python/tuple
+    - 1
+    - !!python/tuple []
+    - *id002
+    - false
+    - !!binary |
+      h+aDRwW70T8=
+  std_x: !!python/object/apply:numpy._core.multiarray._reconstruct
+    args:
+    - *id001
+    - !!python/tuple
+      - 0
+    - !!binary |
+      Yg==
+    state: !!python/tuple
+    - 1
+    - !!python/tuple []
+    - *id002
+    - false
+    - !!binary |
+      tU8pPreo0j8=
+scale: 20
+strides: 4

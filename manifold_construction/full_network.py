@@ -177,13 +177,14 @@ def main():
     initial_learning_rate = 1e-4
     learning_rate_scaling = [10, 5, 2, 1, 0.5, 0.2]
 
-    output_path = os.getcwd() + 'manifold_construction/outputs'
+    output_path = os.getcwd() + '/manifold_construction/outputs'
 
     trainer = Trainer(default_root_dir=output_path, max_epochs=int(np.sum(epochs)))
 
     device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
 
     if args.mode == "train":
+        dirs = [str(i) for i in range(0, 8)]
         dm = ManifoldConstructionDataModule()
         data_format, example_input_array = dm.get_dataFormat()
         preprop_params = dm.get_dataParams()
@@ -196,7 +197,17 @@ def main():
         trainer.fit(net, dm)
 
     elif args.mode == "reconstruct":
-        exit()  # TODO: implement
+        dirs = [str(i) for i in range(8, 12)]
+        dm = ManifoldConstructionDataModule()
+
+        net = FullNetwork.load_from_checkpoint('/output/')
+
+        net.to(device)
+
+        trainer.test(net, dm)
+
+    else:
+        exit(1)
 
 
 if __name__ == "__main__":

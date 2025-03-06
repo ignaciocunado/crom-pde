@@ -17,7 +17,7 @@ Simulation DataModule
 class ManifoldConstructionDataModule(L.LightningDataModule):
     def __init__(self, batch_size: int = 16, num_workers=2):
         super().__init__()
-        self.data_path = 'data/thermodynamics/output/0' #TODO: when on train mode run with outputs 0 to 7
+        self.data_path = 'data/thermodynamics/output/0'
         self.batch_size = batch_size
         self.num_workers = num_workers
 
@@ -71,12 +71,10 @@ class ManifoldConstructionDataModule(L.LightningDataModule):
             self.max_x = np.load(f)
 
     def get_dataParams(self, ):
-
         return {'mean_q': self.mean_q, 'std_q': self.std_q, 'mean_x': self.mean_x, 'std_x': self.std_x,
                 'min_x': self.min_x, 'max_x': self.max_x}
 
     def get_dataFormat(self, ):
-
         example_input_array = torch.unsqueeze(self.sim_dataset[0]['encoder_input'], 0)
         [_, i_dim] = self.sim_dataset[0]['x'].shape
         [npoints, o_dim] = self.sim_dataset[0]['q'].shape
