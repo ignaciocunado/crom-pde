@@ -63,7 +63,7 @@ In this case, our maximum value of $\nu$ is 0.4, so we choose 2000 timesteps to 
 
 Here is a short animation:
 
-![Animation](/data/thermodynamics/visuals/animation.mp4)
+https://github.com/user-attachments/assets/25decb0c-226a-4fa3-ae5b-52ed8b7e1387
 
 And some initial and final results for different conditions:
 
