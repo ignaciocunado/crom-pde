@@ -147,7 +147,7 @@ class FullNetwork(L.LightningModule):
 
         return [optimizer], [scheduler]
 
-    def test_epoch_end(self, outputs):
+    def on_test_epoch_end(self):
         for sim_state in self.sim_state_list:
             sim_state.write_to_file()
 
@@ -200,12 +200,25 @@ def main():
         dirs = [str(i) for i in range(8, 12)]
         dm = ManifoldConstructionDataModule()
 
-        net = FullNetwork.load_from_checkpoint('/output/')
+        checkpoint_path = 'manifold_construction/outputs/lightning_logs/version_0/checkpoints/epoch=15999-step=2000000.ckpt'
+        checkpoint = torch.load(checkpoint_path, weights_only=False)
+
+        for key in ['encoder.standardizeQ.mean_q_torch', 'encoder.standardizeQ.std_q_torch',
+                    'decoder.invStandardizeQ.mean_q_torch', 'decoder.invStandardizeQ.std_q_torch',
+                    'decoder.prepare.min_x_torch', 'decoder.prepare.max_x_torch',
+                    'decoder.prepare.mean_x_torch', 'decoder.prepare.std_x_torch']:
+            if key in checkpoint['state_dict'] and checkpoint['state_dict'][key].shape == torch.Size([]):
+                checkpoint['state_dict'][key] = checkpoint['state_dict'][key].reshape(1)
+
+        torch.save(checkpoint,
+                   'manifold_construction/outputs/lightning_logs/version_0/checkpoints/fixed_checkpoint.ckpt')
+
+        net = FullNetwork.load_from_checkpoint(
+            'manifold_construction/outputs/lightning_logs/version_0/checkpoints/fixed_checkpoint.ckpt', loaded_from='manifold_construction/outputs/lightning_logs/version_0/checkpoints/fixed_checkpoint.ckpt')
 
         net.to(device)
 
         trainer.test(net, dm)
-
     else:
         exit(1)
 
